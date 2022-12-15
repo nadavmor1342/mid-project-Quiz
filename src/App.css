@@ -1,0 +1,141 @@
+.App {
+  text-align: center;
+}
+.question-card {
+  /* Center the div  */
+  margin: 0 auto;
+
+  /* Dimensions  */
+  width: 40%; /* Can be in percentage also. */
+  height: auto;
+
+  /* Visual  */
+  background-color: black;
+  padding: 16px;
+  border-radius: 16px;
+  border-color: lightskyblue;
+  border: solid;
+  border-width: 5px;
+  color: lightskyblue;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    font-size: 20px;
+}
+ul {
+  list-style: none;
+}
+li {
+  margin-top: 5px;
+  background-color:black;
+  padding: 16px;
+  border: 3px solid lightskyblue;
+  border-radius: 20px;
+  margin-right: 30px;
+  height: 15px;
+  font-size: 15px;
+}
+.question-text {
+  color: lightskyblue;
+  font-size: 20px;
+}
+.win {
+  /* Center the div  */
+  margin: 0 auto;
+
+  /* Dimensions  */
+  width: 50%; /* Can be in percentage also. */
+  height: auto;
+  margin-top: 64px;
+
+  /* Visual  */
+  background-color:black;
+  padding: 16px;
+  border-radius: 16px;
+  color: lightskyblue;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+.lose{
+   /* Center the div  */
+   margin: 0 auto;
+
+   /* Dimensions  */
+   width: 50%; /* Can be in percentage also. */
+   height: auto;
+   margin-top: 150px;
+ 
+   /* Visual  */
+   background-color: black;
+   padding: 16px;
+   border-radius: 16px;
+   color: lightskyblue;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+button {
+  background-color: black; /* Green */
+  border: none;
+  color: lightskyblue;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 20px;
+  border: solid;
+  border-width: 2px;
+  border-color: lightskyblue;
+}
+.main-page{
+  background-color: aqua;
+}
+.welcome{
+  margin: 0 auto;
+  width: 50%; /* Can be in percentage also. */
+  height: auto;
+  margin-top: 125px;
+  background-color: black;
+  padding: 16px;
+  text-align: center;
+  border-radius: 16px;
+  color: lightskyblue;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  
+  color: lightskyblue;
+  margin-bottom: px;
+}
+.banner{
+  margin-bottom: 20px;
+  /* margin-top: 10px; */
+  font-size: 30px;
+  font-style:oblique ;
+  background-color:black;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+  rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  border: solid;
+  border-width: 2px;
+}
+progress{
+accent-color: lightskyblue;
+width: 50%;
+transition: value 0.4s ease-in;
+}
+.giveup{
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
