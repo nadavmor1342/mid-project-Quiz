@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { ProgressBar } from "./components/progressBar/progbar";
+import { Quiz } from "./components/context";
+import Header from "./components/header";
+import Welcome from "./components/welcome";
+import Win from "./components/win";
+import Lost from "./components/lost";
+import Card from "./components/card";
 
 function App() {
   //  ------------------------Properties---------------------------
@@ -10,6 +16,7 @@ function App() {
   const [welcome, setWelcome] = useState(true);
   const [precentage, setPrecentage] = useState(0);
   const [heart, setHeart] = useState(3);
+  const [someQuestions, setSomeQuestions]=useState([])
   const full = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -366,9 +373,9 @@ function App() {
     {
       text: "What is the color of a school bus?",
       options: [
-        { id: 0, text: "Yellow", isCorrect: false },
+        { id: 0, text: "Yellow", isCorrect: true },
         { id: 1, text: "Green", isCorrect: false },
-        { id: 2, text: "Black", isCorrect: true },
+        { id: 2, text: "Black", isCorrect: false },
         { id: 3, text: "White", isCorrect: false },
       ],
     },
@@ -428,7 +435,7 @@ function App() {
       ],
     },
     {
-      text: "When do leaves die?",
+      text: "When do leafs die?",
       options: [
         { id: 0, text: "Never", isCorrect: false },
         { id: 1, text: "In The Fall", isCorrect: true },
@@ -517,8 +524,6 @@ function App() {
     return array;
   };
   //----a new var that is the array question after shuffle--------------
-  let fillterQ = shuffle(questions);
-  halfQ = fillterQ.splice(0, 30);
 
   /* -------------A possible answer was clicked------------------------ */
   const optionClicked = (isCorrect) => {
@@ -553,97 +558,55 @@ function App() {
     setWelcome(false);
   };
 
+  useEffect(()=>{
+    const fillterQ = shuffle(questions);
+    const someQ = fillterQ.splice(0, 20);
+    setSomeQuestions(someQ)
+  },[])
+
   return (
     <div>
-      <div className="header">
-        <text className="banner">King of the Quiz👑</text>
-        <div className="give">
-          <button className="giveup" onClick={() => giveup()}>
-            give up
-          </button>
-        </div>
-      </div>
-      {welcome ? (
-        //----------------welcome page-----------------------------
-        <div className="welcome">
-          <h1>Hello and wellcome to our site</h1>
-          <p>
-            Here you are going to find a quiz game that includes 20 questions
-            and is going to challenge your knowledge.
-          </p>
-          <p>Click the button below to start the game:</p>
-          <button onClick={() => startgame()}> start the game</button>
-        </div>
-      ) : (
-        <div className="App">
-          {/* Show result or show the question game  */}
-          {/* you either win */}
-          {win ? (
-            <div className="win">
-              <h1>🤴🏼You are the king of the Quiz🤴🏼</h1>
-              <button onClick={() => restartGame()}>Restart game</button>
-            </div>
-          ) : //or you lose
-          lost ? (
-            <div className="lose">
-              <h1>💩you lost the game💩</h1>
-              <h3>you are not a part of the royal blood</h3>
-              <button onClick={() => restartGame()}>Restart game</button>
-            </div>
-          ) : (
-            /* 3. Question Card */
-            <div className="question-card">
-              {/* ----------------lives ramaining ------------------*/}
-              <label>lives ramaining:        </label>
-              <text>
-                {heart == 3 ? (
-                  <text>
-                    {full}
-                    {full}
-                    {full}
-                  </text>
-                ) : heart == 2 ? (
-                  <text>
-                    {full}
-                    {full}
-                    {empty}
-                  </text>
-                ) : heart == 1 ? (
-                  <text>
-                    {full}
-                    {empty}
-                    {empty}
-                  </text>
-                ) : heart == 0 ? (
-                  setLost(true)
-                ) : null}
-              </text>
-              <p>let see what you got...</p>
-              {/* Current Question  */}
-              <p>
-                Question: {currentQuestion + 1} out of {questions.length}
-              </p>
-              <p className="question-text">{halfQ[currentQuestion].text}</p>
-
-              {/* List of possible answers  */}
-              <ul>
-                {shuffle(halfQ[currentQuestion].options).map((option) => {
-                  return (
-                    <li
-                      key={option.id}
-                      onClick={() => optionClicked(option.isCorrect)}
-                    >
-                      {option.text}
-                    </li>
-                  );
-                })}
-              </ul>
-              {/* the progress bar at the buttom */}
-              <ProgressBar width={300} percent={precentage}></ProgressBar>
-            </div>
-          )}
-        </div>
-      )}
+      <Quiz.Provider 
+        value={{
+          win,
+          setWin,
+          currentQuestion,
+          setCurrentQuestion,
+          lost,
+          setLost,
+          welcome,
+          setWelcome,
+          precentage,
+          setPrecentage,
+          heart,
+          setHeart,
+          full,
+          empty,
+          date,
+          option1,
+          option2,
+          option3,
+          option4,
+          month,
+          day,
+          questions,
+          someQuestions,
+          shuffle,
+          optionClicked,
+          restartGame,
+          startgame,
+          giveup,
+        }}
+      >
+        <Header />
+        {welcome ? (
+          <Welcome />
+        ) : (
+          <div className="App">
+            {win ? <Win /> : lost ? <Lost /> : <Card />}
+          </div>
+        )}
+      </Quiz.Provider>
     </div>
   );
 }
