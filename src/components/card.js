@@ -54,7 +54,7 @@ const Card = () => {
       <ul>
         {shuffle(someQuestions[currentQuestion].options).map((option) => {
           return (
-            <li key={option.id} onClick={() => optionClicked(option.isCorrect)}>
+            <li className="Q" key={option.id} onClick={() => optionClicked(option.isCorrect)}>
               {option.text}
             </li>
           );
